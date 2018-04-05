@@ -1,0 +1,22 @@
+#! /bin/bash -e
+
+script_basename=$(basename "${0}");
+srcdir="${PWD}"'/site/src';
+structdir="${PWD}"'/site/struct';
+pkgdir="${PWD}"'/site/pkg';
+
+if [ -x "${PWD}/${1}" ]
+then
+	source "${PWD}/${1}";
+	
+	package;
+	
+	# rename all files:
+	# append to all filenames:
+	# -${pkgver}-${pkgverrel}-${pkgarch}
+	find "${pkgdir}" -type f -execdir mv {} {}"-${pkgver}-${pkgverrel}-${pkgarch}" \;
+	
+	tar -cvf "${pkgname}-${pkgver}-${pkgverrel}-${pkgarch}.pkg.tar" --directory="${pkgdir}" '.';
+else
+	echo "${script_basename} : skipping '""${PWD}/${1}""' because it is not executable";
+fi
