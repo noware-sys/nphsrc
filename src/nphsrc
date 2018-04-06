@@ -13,7 +13,7 @@ then
 	
 	# rename all files:
 	# append to all filenames:
-	# -${pkgver}-${pkgverrel}-${pkgarch}
+	# "-${pkgver}-${pkgverrel}-${pkgarch}"
 	find "${pkgdir}" -type f -execdir mv {} {}"-${pkgver}-${pkgverrel}-${pkgarch}" \;
 	
 	tar -cvf "${pkgname}-${pkgver}-${pkgverrel}-${pkgarch}.pkg.tar" --directory="${pkgdir}" '.';
